@@ -1,0 +1,32 @@
+body {
+    background-color: rgb(7, 4, 67);
+}
+
+h1 {
+    font-size: 56px;
+    color: #eaea19;
+}
+
+.cards{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card {
+    width: 110px;
+    background-image: url("img/jorel.webp");
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 150px;
+    background-color: rgb(236, 134, 32);
+    border-radius: 5px;
+    margin: 10px;
+    backface-visibility: hidden;
+    transition: all .5s;
+    transform-style: preserve-3d;
+}
+
+.hide {
+    display: none;
+}
