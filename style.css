@@ -7,6 +7,9 @@ h1 {
     color: #eaea19;
 }
 
+img {
+    width: 90%;
+}
 .cards{
     display: flex;
     justify-content: center;
@@ -15,18 +18,48 @@ h1 {
 
 .card {
     width: 110px;
-    background-image: url("img/jorel.webp");
-    background-size: contain;
-    background-repeat: no-repeat;
     height: 150px;
-    background-color: rgb(236, 134, 32);
     border-radius: 5px;
     margin: 10px;
-    backface-visibility: hidden;
-    transition: all .5s;
     transform-style: preserve-3d;
 }
 
 .hide {
     display: none;
 }
+
+
+.face {
+    width: 100%;
+    height: 100%;
+    background-color: #A7E9AF;
+    border-radius: 10px;
+    box-shadow: 1px 1px 1px rgba(0,0,0,.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    backface-visibility: hidden;
+    transition: all .5s;
+    transform-style: preserve-3d;
+  }
+
+  .back-face {
+    transform: rotateY(180deg);
+  }
+
+  .back-flip {
+    transform: rotateY(0deg);
+  }
+
+  .front-face{
+    background-image: url("img/jorel.webp");
+    background-size: contain;
+    background-repeat: no-repeat;
+
+  }
+
+  .front-flip {
+    transform: rotateY(-180deg);
+  }
+  
