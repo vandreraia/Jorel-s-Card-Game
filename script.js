@@ -1,38 +1,43 @@
 let cards = ["lara.webp", "lara.webp", "juju.webp", "juju.webp", "Jorel2.webp", "Jorel2.webp", "Seu_edson.webp", "Seu_edson.webp", "Nico.webp", "Nico.webp", "magal.png", "magal.png", "Gesonel.jpg", "Gesonel.jpg"]
-let pastCard = "";
 let ncards = 0;
-let jogadas = 0;
 let acertos = 0;
 let time = 0;
 let replay;
-let pastInner;
-let curretCardInner;
+let jogadas = 0;
+let pastCard = '';
 
-function clickCard(el) {
-    el.querySelector(":scope .front-face").classList.add("front-flip");
-    el.querySelector(":scope .back-face").classList.add("back-flip");
-    jogadas++;
-    if (jogadas % 2 == 0) {
-        if (myCard.innerHTML == el.innerHTML) {
-            acertos++;
-        } else {
-            (el.querySelector(":scope .front-face").classList.remove("front-flip"));
-            myCard.querySelector(":scope .front-face").classList.remove("front-flip");
-            el.querySelector(":scope .back-face").classList.remove("back-flip");
-            myCard.querySelector(":scope .back-face").classList.remove("back-flip");
-            console.log("false");
+function clickCard(currentCard) {
+    let virado = '<div class="card virado"';
+    console.log(currentCard)
+    if (currentCard.outerHTML.slice(0, 24) != virado) {
+        currentCard.classList.add("virado");
+        currentCard.querySelector(":scope .front-face").classList.add("front-flip");
+        currentCard.querySelector(":scope .back-face").classList.add("back-flip");
+        jogadas++;
+        if (jogadas % 2 == 0) {
+            if (pastCard.innerHTML == currentCard.innerHTML) {
+                acertos++;
+            } else {
+                setTimeout(function () { return currentCard.querySelector(":scope .front-face").classList.remove("front-flip"); }, 1000);
+                setTimeout(function () { return currentCard.querySelector(":scope .back-face").classList.remove("back-flip"); }, 1000);
+                pastCard.querySelector(":scope .front-face").classList.remove("front-flip");
+                pastCard.querySelector(":scope .back-face").classList.remove("back-flip");
+                pastCard.classList.remove("virado");
+                currentCard.classList.remove("virado");
+            }
         }
-    }
-    if (acertos == ncards / 2){
-        alert(`Você ganhou em ${jogadas} jogadas!`)
-        replay = prompt("gostaria de começar de novo?")
-        jogadas = 0;
-        acertos = 0;
-        if (replay == "sim"){
-            //getCards();
+
+        if (acertos == ncards / 2) {
+            setTimeout(alert, 100, `Você ganhou em ${jogadas} jogadas!`);
+            //replay = prompt("gostaria de começar de novo?")
+            jogadas = 0;
+            acertos = 0;
+            if (replay == "sim") {
+                //getCards();
+            }
         }
+        pastCard = currentCard;
     }
-    myCard = el;
 }
 
 function getCards() {
@@ -65,7 +70,7 @@ function addCards(card) {
         </div>`);
 }
 
-function timer(){
+function timer() {
     time = setInterval(1000);
     console.log(time)
 }
