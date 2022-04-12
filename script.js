@@ -6,8 +6,7 @@ let pastCard = '';
 let jogadas = 0;
 
 function clickCard(currentCard) {
-    let virado = '<div class="card virado"';
-    if (currentCard.outerHTML.slice(0, 24) != virado) {
+    if (!currentCard.classList.contains("virado")) {
         currentCard.classList.add("virado");
         currentCard.querySelector(":scope .front-face").classList.add("front-flip");
         currentCard.querySelector(":scope .back-face").classList.add("back-flip");
@@ -33,7 +32,10 @@ function soColoqueiIssoPraDarTimeOut(currentCard){
     if (acertos == ncards / 2) {
         alert(`Você ganhou em ${jogadas} jogadas, e ${minutes} minutos e ${seconds} segundos!`);
         let replay = prompt("gostaria de começar de novo?")
-        jogadas, acertos, minutes, seconds = 0;
+        jogadas = 0;
+        acertos = 0;
+        minutes= 0;
+        seconds = 0;
         if (replay == "sim") {
             document.querySelector(".cards").innerHTML = "";
             getCards();
