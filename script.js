@@ -10,11 +10,11 @@ function clickCard(currentCard) {
         currentCard.classList.add("virado");
         currentCard.querySelector(":scope .front-face").classList.add("front-flip");
         currentCard.querySelector(":scope .back-face").classList.add("back-flip");
-        setTimeout(soColoqueiIssoPraDarTimeOut, 1000, currentCard);
+        setTimeout(checkCard, 1000, currentCard);
     }    
 }
 
-function soColoqueiIssoPraDarTimeOut(currentCard){
+function checkCard(currentCard){
     jogadas++;
     if (jogadas % 2 == 0) {
         if (pastCard.innerHTML == currentCard.innerHTML) {
@@ -44,6 +44,7 @@ function soColoqueiIssoPraDarTimeOut(currentCard){
     pastCard = currentCard;
 }   
 
+//inicia o jogo
 function getCards() {
     let cards = ["lara.webp", "lara.webp", "juju.webp", "juju.webp", "Jorel2.webp", "Jorel2.webp", "Seu_edson.webp", "Seu_edson.webp", "Nico.webp", "Nico.webp", "magal.png", "magal.png", "Gesonel.jpg", "Gesonel.jpg"]
     ncards = prompt("Com quantas cartas deseja jogar? (escolha entre 2 e 14(apenas numeros pares))");
